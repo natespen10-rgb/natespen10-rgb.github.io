@@ -6,103 +6,24 @@
 <title>Nate's Cool Thing</title>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0d0f1a;--panel:#161a2e;--line:#262b48;--text:#e8eaf6;--dim:#8a90b8;--a:#ffd23f;--b:#3ee0cf;--c:#ff5d8f}
+:root{--bg:#0d0f1a;--panel:#161a2e;--line:#262b48;--text:#e8eaf6;--dim:#8a90b8;--a:#ffd23f}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;min-height:100vh}
-header{padding:26px 24px 10px;max-width:1180px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+header{padding:26px 24px 10px;max-width:1180px;margin:auto}
 h1{font-family:'Press Start 2P',monospace;font-size:clamp(18px,3vw,28px);margin:0;color:var(--a);letter-spacing:1px;text-shadow:3px 3px 0 #b23a65}
 .tag{color:var(--dim);margin:10px 0 0;font-size:14px}
 main{max-width:1180px;margin:auto;padding:10px 24px 40px}
-.btn{font:700 14px Inter,sans-serif;background:var(--panel);color:var(--text);border:1px solid var(--line);padding:10px 16px;border-radius:999px;cursor:pointer}
-.btn:hover{border-color:var(--a)}.btn.go{background:var(--a);color:#111;border-color:var(--a)}
-.search{position:relative;flex:0 1 320px}.search input{width:100%;font:500 15px Inter,sans-serif;padding:11px 14px 11px 40px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--text);outline:none}
-.search input:focus{border-color:var(--a)}.search span{position:absolute;left:14px;top:50%;transform:translateY(-50%);opacity:.6}
-.bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:8px 0 18px}.bar h2{margin:0;font-size:22px;flex:1}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
-.card{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden;cursor:pointer;color:inherit;text-decoration:none;display:flex;flex-direction:column;transition:transform .15s,border-color .15s,box-shadow .15s}
-.card:hover{transform:translateY(-4px);border-color:var(--c2);box-shadow:0 12px 30px -10px var(--c2)}
-.cover{height:110px;display:grid;place-items:center;font-size:56px;background:radial-gradient(circle at 50% 120%,color-mix(in srgb,var(--c2) 60%,transparent),transparent 70%),linear-gradient(160deg,#1c2142,#0d0f1f)}
-.body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:4px}.body b{font-size:17px}.body small{color:var(--dim);font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.tools{position:absolute;top:8px;right:8px;display:flex;gap:4px;opacity:0;transition:opacity .15s}.card:hover .tools{opacity:1}
-.tools button{width:30px;height:30px;border-radius:8px;border:0;background:rgba(0,0,0,.6);color:#fff;cursor:pointer;font-size:14px}
-.add{border:2px dashed var(--line);background:transparent;min-height:180px;align-items:center;justify-content:center;gap:6px;font:700 16px Inter;color:var(--dim)}
-.add span{font-size:40px}.add:hover{border-color:var(--a);color:var(--a);box-shadow:none}
-.empty{grid-column:1/-1;text-align:center;color:var(--dim);padding:30px 0}
-dialog{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:18px;padding:22px;width:min(440px,92vw)}
-dialog::backdrop{background:rgba(0,0,0,.6)}dialog h3{margin:0 0 14px}
-label{display:block;font-size:13px;font-weight:700;color:var(--dim);margin:12px 0 6px}
-input,textarea{width:100%;font:500 15px Inter,sans-serif;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:#0f1224;color:var(--text);outline:none}input:focus,textarea:focus{border-color:var(--a)}
-.emojis{display:flex;flex-wrap:wrap;gap:6px}.emojis button{width:38px;height:38px;border-radius:10px;border:1px solid var(--line);background:#0f1224;font-size:20px;cursor:pointer}.emojis button.on{border-color:var(--a);background:#2a2f55}
-.row{display:flex;gap:10px;justify-content:flex-end;margin-top:18px}.err{color:var(--c);font-size:13px;min-height:18px;margin:8px 0 0}
-footer{color:var(--dim);font-size:12px;text-align:center;padding:0 16px 24px}
+.empty{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:60px 20px;text-align:center;color:var(--dim);font-size:16px}
+.empty span{display:block;font-size:48px;margin-bottom:10px}
 </style>
 </head>
 <body>
 <header>
-  <div><h1>NATE'S COOL THING 😎</h1><p class="tag" id="tag"></p></div>
-  <label class="search"><span>🔎</span><input id="q" type="search" placeholder="Search your games..." autocomplete="off"></label>
+  <h1>NATE'S COOL THING 😎</h1>
+  <p class="tag">0 games</p>
 </header>
 <main>
-  <div class="bar"><h2>🎮 My Games</h2><button class="btn" id="exp">⇄ Backup / restore</button><button class="btn go" id="addBtn">＋ Add a game link</button></div>
-  <div class="grid" id="grid"></div>
+  <div class="empty"><span>🎮</span>No games here yet.</div>
 </main>
-<footer>Your links are saved in this browser. Use Backup / restore to move them to another computer.</footer>
-
-<dialog id="dlg"><form method="dialog" id="form">
-  <h3 id="dlgTitle">Add a game link</h3>
-  <label for="fName">Game name</label><input id="fName" maxlength="40" placeholder="My Awesome Game" required>
-  <label for="fUrl">Game URL</label><input id="fUrl" placeholder="https://..." required>
-  <label>Icon</label><div class="emojis" id="emo"></div>
-  <p class="err" id="err"></p>
-  <div class="row"><button class="btn" value="cancel" formnovalidate>Cancel</button><button class="btn go" id="save" value="ok">Save</button></div>
-</form></dialog>
-
-<dialog id="bk"><form method="dialog">
-  <h3>Backup / restore</h3>
-  <p class="tag" style="margin:0">Copy this text to save your links. To restore them (for example on another computer), paste it here and click Restore.</p>
-  <label for="bkText">Your links</label><textarea id="bkText" rows="7"></textarea>
-  <p class="err" id="bkErr"></p>
-  <div class="row"><button class="btn" value="cancel">Close</button><button class="btn go" id="restore" value="restore">Restore</button></div>
-</form></dialog>
-
-<script>
-const $=s=>document.querySelector(s);
-const EMO=['🎮','🕹️','👾','🏎️','⚔️','🔫','🧟','👻','🚀','⚽','🏀','🧩','♟️','🃏','🐉','🌋','🥷','🏰','🎯','⭐'];
-const COLS=['#ff5d8f','#3ee0cf','#ffd23f','#c58bff','#5ee07a','#ff8a3d','#4b9bff'];
-const KEY='ra_links';
-const load=()=>{try{const v=JSON.parse(localStorage.getItem(KEY));return Array.isArray(v)?v:[]}catch(e){return[]}};
-const saveAll=l=>{try{localStorage.setItem(KEY,JSON.stringify(l))}catch(e){}};
-let links=load(),q='',editI=-1,emo=EMO[0];
-const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const okUrl=u=>{if(/\s/.test(u))return false;try{const x=new URL(u);return (x.protocol=='https:'||x.protocol=='http:')&&/^[a-z0-9.-]+\.[a-z]{2,}$|^localhost$/i.test(x.hostname)}catch(e){return false}};
-const host=u=>{try{return new URL(u).hostname}catch(e){return u}};
-function render(){
-  $('#tag').textContent=links.length?links.length+' game'+(links.length==1?'':'s')+' · click one to play':'Add links to your games and play them from here';
-  const list=links.map((l,i)=>({...l,i})).filter(l=>!q||(l.name+' '+l.url).toLowerCase().includes(q));
-  $('#grid').innerHTML=list.map(l=>`<a class="card" href="${esc(l.url)}" target="_blank" rel="noopener noreferrer" style="--c2:${COLS[l.i%COLS.length]}">
-      <div class="cover">${esc(l.emo||'🎮')}</div><div class="body"><b>${esc(l.name)}</b><small>${esc(host(l.url))}</small></div>
-      <div class="tools"><button data-edit="${l.i}" title="Edit">✏️</button><button data-del="${l.i}" title="Delete">🗑️</button></div></a>`).join('')
-    +(q&&!list.length?'<div class="empty">No games match that search.</div>':'')
-    +(q?'':'<button class="card add" id="addCard"><span>＋</span>Add a game link</button>');
-}
-function openForm(i){editI=i;const l=links[i]||{name:'',url:'',emo:EMO[0]};emo=l.emo||EMO[0];
-  $('#dlgTitle').textContent=i>=0?'Edit game link':'Add a game link';$('#fName').value=l.name;$('#fUrl').value=l.url;$('#err').textContent='';drawEmo();$('#dlg').showModal();$('#fName').focus()}
-function drawEmo(){$('#emo').innerHTML=EMO.map(e=>`<button type="button" class="${e==emo?'on':''}" data-e="${e}">${e}</button>`).join('')}
-$('#emo').onclick=e=>{const b=e.target.closest('[data-e]');if(b){emo=b.dataset.e;drawEmo()}};
-$('#save').onclick=e=>{const name=$('#fName').value.trim();let url=$('#fUrl').value.trim();if(url&&!/^https?:\/\//i.test(url))url='https://'+url;
-  if(!name){e.preventDefault();$('#err').textContent='Give the game a name.';return}
-  if(!okUrl(url)){e.preventDefault();$('#err').textContent='That doesn\'t look like a web address. It should start with https://';return}
-  const item={name,url,emo};if(editI>=0)links[editI]=item;else links.push(item);saveAll(links);render()};
-$('#grid').onclick=e=>{const ed=e.target.closest('[data-edit]'),dl=e.target.closest('[data-del]');
-  if(ed){e.preventDefault();openForm(+ed.dataset.edit);return}
-  if(dl){e.preventDefault();const i=+dl.dataset.del;if(confirm('Remove "'+links[i].name+'"?')){links.splice(i,1);saveAll(links);render()}return}
-  if(e.target.closest('#addCard'))openForm(-1)};
-$('#addBtn').onclick=()=>openForm(-1);
-$('#q').oninput=e=>{q=e.target.value.trim().toLowerCase();render()};
-$('#exp').onclick=()=>{$('#bkText').value=JSON.stringify(links);$('#bkErr').textContent='';$('#bk').showModal()};
-$('#restore').onclick=e=>{try{const v=JSON.parse($('#bkText').value);if(!Array.isArray(v))throw 0;const clean=v.filter(l=>l&&typeof l.name=='string'&&okUrl(l.url)).map(l=>({name:l.name.slice(0,40),url:l.url,emo:EMO.includes(l.emo)?l.emo:'🎮'}));
-  links=clean;saveAll(links);render()}catch(err){e.preventDefault();$('#bkErr').textContent='That text isn\'t a valid backup.'}};
-render();
-</script>
 </body>
 </html>
